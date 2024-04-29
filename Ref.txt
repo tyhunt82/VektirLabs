@@ -1,0 +1,5 @@
+https://pythonalgos.com/python-firebase-authentication-integration-with-fastapi/
+https://nicegui.io/documentation
+https://github.com/zauberzeug/nicegui/blob/main/examples/menu_and_tabs/main.py
+https://tailwindui.com/components
+https://tailwindcss.com/docs/font-size
