@@ -5,3 +5,5 @@ https://tailwindui.com/components
 https://tailwindcss.com/docs/font-size
 
 https://github.com/zauberzeug/nicegui/tree/main/nicegui/tailwind_types
+
+https://quasar.dev/vue-components/button-group
