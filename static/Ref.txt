@@ -3,3 +3,5 @@ https://nicegui.io/documentation
 https://github.com/zauberzeug/nicegui/blob/main/examples/menu_and_tabs/main.py
 https://tailwindui.com/components
 https://tailwindcss.com/docs/font-size
+
+https://github.com/zauberzeug/nicegui/tree/main/nicegui/tailwind_types
