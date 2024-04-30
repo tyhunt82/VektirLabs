@@ -1,6 +1,9 @@
 from nicegui import APIRouter, ui
-from components.headers import default_header
-from components.sidebars import default_sidebar
+
+# Import pages -------------------------------------------------------
+from pages.index import index_page
+from pages.home import home_page 
+from pages.login import login_page
 
 # Set up NiceGUI router ----------------------------------------------
 router = APIRouter()
@@ -8,33 +11,12 @@ router = APIRouter()
 # Define routes -------------------------------------------------------
 @ui.page('/')
 def get_index_view():
-    # Page Setup ----------------------------------
-    default_header()
-
-    # Body ----------------------------------
-    ui.link('landing Page', '/')
-    ui.link('Home', '/home')
-    ui.link('Login', '/login')
+    index_page()
 
 @ui.page('/home')
 def get_home_view():
-    # Page Setup ----------------------------------
-    default_header()
-    default_sidebar()
-
-    # Body ----------------------------------  
-    ui.label('Authenticated Home Page')
-    ui.link('landing Page', '/')
-    ui.link('Home', '/home')
-    ui.link('Login', '/login')
-
+    home_page()
+  
 @ui.page('/login')
 def get_login_view():
-    # Page Setup ----------------------------------
-    default_header()
-
-    # Body ----------------------------------------
-    ui.label('Login Page')
-    ui.link('landing Page', '/')
-    ui.link('Home', '/home')
-    ui.link('Login', '/login')
+    login_page()
