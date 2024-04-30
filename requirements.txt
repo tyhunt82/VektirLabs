@@ -6,6 +6,7 @@ anyio==4.3.0
 async-timeout==4.0.3
 attrs==23.2.0
 bidict==0.23.1
+bottle==0.12.25
 CacheControl==0.14.0
 cachetools==5.3.3
 certifi==2024.2.2
@@ -52,6 +53,7 @@ orjson==3.10.1
 pandas==2.2.2
 proto-plus==1.23.0
 protobuf==4.25.3
+proxy_tools==0.1.0
 pscript==0.7.7
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
@@ -70,6 +72,7 @@ python-jwt==4.1.0
 python-multipart==0.0.9
 python-socketio==5.11.2
 pytz==2024.1
+pywebview==5.1
 PyYAML==6.0.1
 requests==2.29.0
 requests-toolbelt==0.10.1
