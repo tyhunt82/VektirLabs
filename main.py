@@ -15,4 +15,5 @@ app.add_static_files('/static', 'static')
 
 
 # Run app -----------------------------------------------------------
-ui.run()
+ui.run(favicon='static/bolt.png')
+
