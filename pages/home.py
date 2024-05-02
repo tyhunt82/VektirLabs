@@ -7,50 +7,47 @@ class home_page:
         self.ui.page_title('Home')
         self.isAuthd = False
 
-        def get_started_handler(selected):
-            if selected == 'login':
-                get_started_dialog.close()
-                # with self.ui.dialog() as login_dialog:
-                #     # Login process ----
-                #     with self.ui.card():
-                #         self.ui.label('Login').tailwind('text-xl','w-48', 'p-4', 'font-bold',)
-                #         email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
-                #         password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
-                #         submit = self.ui.button('Login').classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: login process
-                # self.ui.button('Open a dialog', on_click=login_dialog.open)
-
-            elif selected == 'signup':
-                # Sign up process ----
-                # with self.ui.card():
-                #     self.ui.label('Login').tailwind('text-xl','w-48', 'p-4', 'font-bold',)
-                #     email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
-                #     password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
-                #     submit = self.ui.button('Login').classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: login process
-                pass             
-            elif selected == 'anonymous':
-                pass
-            elif selected == 'forgotpassword':
-                pass
-
         # Header ----------------------------------
         with self.ui.header().classes(replace='font-mono shadow-md bg-white text-md min-h-12') as header:
-            with self.ui.grid(columns=3).classes('flex flat box-shadow-none'):
-                self.ui.button(
-                    on_click=lambda: left_drawer.toggle(),
-                    icon='menu'
-                ).tailwind('flex-none', 'blue-100', 'm-2')
+            with self.ui.grid(columns=3).classes('flex justify-between flat box-shadow-none'):
+                
+                self.ui.button(on_click=lambda: left_drawer.toggle(), icon='menu'
+                ).tailwind('flex-none', 'bg-slate-500', 'm-2')
 
-                self.ui.label('Vektir Labs').classes('flex-1 font-mono m-2 text-slate-600 text-lg font-bold')
+                self.ui.label('Vektir Labs').classes('flex-1 p-2 font-mono text-slate-600 text-lg font-bold')
 
-                self.ui.button('Login',
-                    on_click=lambda: right_drawer.toggle(),
+                # Login form ----------------------------------
+                with self.ui.dialog() as login_dialog:
+                    with self.ui.card():
+                        self.ui.label('Login').tailwind('text-xl','w-48', 'p-2', 'font-bold',)
+                        email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
+                        password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
+                        fpw = self.ui.link('Forgot Password', '/forgot').classes('block text-center p-2')
+                        submit = self.ui.button('Login', on_click=self.ui.notify('Logged in'),
+                            ).classes('w-48 bg-green text-white font-bold py-2 px-4 p-2 rounded') #TODO: Sign up process
+                
+                # Signup form ----------------------------------
+                with self.ui.dialog() as signup_dialog:
+                    with self.ui.card():
+                        self.ui.label('Sign Up').tailwind('text-xl','w-48', 'p-2', 'font-bold',)
+                        un = self.ui.input(label='User name', placeholder='Your username').classes('w-48 p-2')
+                        email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
+                        password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
+                        confirm_password = self.ui.input(label='Confirm Password', placeholder='Your password again', password=True, ).classes('w-48 p-2')
+                        submit = self.ui.button('Sign up', on_click=self.ui.notify('Logged in'),
+                            ).classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: signup process
+                        
+                # Login button ----------------------------------    
+                self.ui.button('Login', on_click=login_dialog.open,
                 ).tailwind('flex-none','w-100', 'bg-green','bg-gray-600','text-grey-800','capitalize', 'm-2')
 
-                self.ui.button('Sign up',
-                    on_click=lambda: right_drawer.toggle(),
+                # Sign up button ----------------------------------    
+                self.ui.button('Sign up', on_click=signup_dialog.open,
                 ).tailwind('flex-none','w-100', 'bg-gray-600','text-grey-800','capitalize', 'm-2')
 
-        
+      
+
+
         # Body ----------------------------------
         with self.ui.row().classes('flex w-full bordered'):
             with self.ui.column().classes('flex flex-col w-full bg-white h-screen items-center py-2'):
