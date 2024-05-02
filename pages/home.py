@@ -1,4 +1,4 @@
-from nicegui import Tailwind, ui 
+from nicegui import Tailwind, ui
 
 class home_page:
     def __init__(self):
@@ -6,6 +6,27 @@ class home_page:
         self.un = 'Guest'
         self.ui.page_title('Home')
         self.isAuthd = False
+
+        # Dialogs ----------------------------------
+        with self.ui.dialog().classes('bg-white w-48') as settings_dialog:
+            with self.ui.card():
+                self.ui.label('Settings').tailwind('text-xl','w-48', 'p-2', 'font-bold',)
+                ui.separator()
+                ui.switch('switch me')
+                ui.switch('switch me')
+                ui.switch('switch me')
+
+        with self.ui.dialog().classes('bg-white w-48') as create_new_dialog:
+            with self.ui.card():
+                self.ui.label('Create new Project').tailwind('text-xl','w-96', 'p-2', 'font-bold')
+                self.ui.separator()
+                well_name = self.ui.input(label='Well Name', placeholder='Your Wells Name').classes('w-48')
+                self.ui.switch('Add Comments')
+                self.ui.switch('Add Attachments').props('enabled')
+                self.ui.switch('Add Tags')
+
+                self.ui.button('Create new Project', on_click=lambda: '',).classes('w-full capitalize bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded')
+
 
         # Header ----------------------------------
         with self.ui.header().classes(replace='font-mono shadow-md bg-white text-md min-h-12') as header:
@@ -16,37 +37,9 @@ class home_page:
 
                 self.ui.label('Vektir Labs').classes('flex-1 p-2 font-mono text-slate-600 text-lg font-bold')
 
-                # Login form ----------------------------------
-                with self.ui.dialog() as login_dialog:
-                    with self.ui.card():
-                        self.ui.label('Login').tailwind('text-xl','w-48', 'p-2', 'font-bold',)
-                        email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
-                        password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
-                        fpw = self.ui.link('Forgot Password', '/forgot').classes('block text-center p-2')
-                        submit = self.ui.button('Login', on_click=self.ui.notify('Logged in'),
-                            ).classes('w-48 bg-green text-white font-bold py-2 px-4 p-2 rounded') #TODO: Sign up process
-                
-                # Signup form ----------------------------------
-                with self.ui.dialog() as signup_dialog:
-                    with self.ui.card():
-                        self.ui.label('Sign Up').tailwind('text-xl','w-48', 'p-2', 'font-bold',)
-                        un = self.ui.input(label='User name', placeholder='Your username').classes('w-48 p-2')
-                        email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
-                        password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
-                        confirm_password = self.ui.input(label='Confirm Password', placeholder='Your password again', password=True, ).classes('w-48 p-2')
-                        submit = self.ui.button('Sign up', on_click=self.ui.notify('Logged in'),
-                            ).classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: signup process
-                        
-                # Login button ----------------------------------    
-                self.ui.button('Login', on_click=login_dialog.open,
-                ).tailwind('flex-none','w-100', 'bg-green','bg-gray-600','text-grey-800','capitalize', 'm-2')
-
-                # Sign up button ----------------------------------    
-                self.ui.button('Sign up', on_click=signup_dialog.open,
+                # Settings button ----------------------------------    
+                self.ui.button(icon='settings', on_click=lambda: settings_dialog.open(),
                 ).tailwind('flex-none','w-100', 'bg-gray-600','text-grey-800','capitalize', 'm-2')
-
-      
-
 
         # Body ----------------------------------
         with self.ui.row().classes('flex w-full bordered'):
@@ -57,28 +50,21 @@ class home_page:
                 self.ui.link('Temp', '/temp')
            
         # Left Sidebar ----------------------------------
-        with self.ui.left_drawer().classes('bg-gray-100') as left_drawer:
-            self.ui.label(f'Welcome, {self.un}!').tailwind('block', 'w-full', 'text-lg', 'blue-500', 'm-2', 'text-center')
-            self.ui.separator()
-            with self.ui.expansion('Projects', icon='house').classes('w-full'):
+        with self.ui.left_drawer().classes('bg-gray-100 font-mono shadow-md') as left_drawer:
+            self.ui.label(f'Welcome, {self.un}!').tailwind('w-full', 'text-lg', 'blue-500', 'text-center')
+            ui.separator()
+
+            self.ui.button('Create',icon='add', on_click=lambda: create_new_dialog.open()
+                ).tailwind('flex', 'flex-col','block','capitalize','rounded-full', 'text-center','w-full', 'bg-blue-500', 'text-white', 'font-bold',)
+
+            with self.ui.expansion('Projects').classes('w-full'):
                 self.ui.label('Well 1').tailwind.text_color('bg-blue-500')
                 self.ui.label('Well 2')
                 self.ui.label('Well 3')
                 self.ui.label('Well 4')
                 self.ui.label('Well 5')
-            self.ui.space()
-            with ui.element('q-fab').props('icon=navigation color=blue-5'):
-                self.ui.element('q-fab-action').props('icon=train color=blue-5') \
-                    .on('click', lambda: ui.notify('train'))
-                self.ui.element('q-fab-action').props('icon=sailing color=blue-5') \
-                    .on('click', lambda: ui.notify('boat'))
-                self.ui.element('q-fab-action').props('icon=rocket color=blue-5') \
-                    .on('click', lambda: ui.notify('rocket'))
 
-        # Right Sidebar ----------------------------------
-        with self.ui.right_drawer().classes('bg-gray-100 w-200') as right_drawer:
-            with self.ui.expansion('Get Started', icon='lock').classes('w-full'):
-                self.ui.label('Login').props('borderless')
-                self.ui.label('Sign up')
-                self.ui.label('Anonymous')
-                self.ui.label('Forgot Passwrord')
+            # self.ui.space()
+            # with ui.element('q-fab').props('icon=navigation color=blue-5'):
+            #     self.ui.element('q-fab-action').props('icon=train color=blue-5') 
+               
