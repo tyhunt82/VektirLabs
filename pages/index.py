@@ -31,16 +31,51 @@ class index_page:
                 
        # Header ----------------------------------
         with self.ui.header().classes(replace='flex block font-mono shadow-md bg-white text-md min-h-12') as header:
-            with self.ui.grid(columns=3).classes('flex justify-between flat box-shadow-none'):
-                self.ui.label('Vektir Labs').classes('flex-1 p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+            with self.ui.grid(columns=4).classes('flex justify-between flat box-shadow-none'):
+                     # Menu & Name ----------------------------------
+                with self.ui.element():
+                    with self.ui.row():
+                        # Label ----------------------------------
+                        self.ui.label('Vektir Labs').classes('flex p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
 
-                # Login button ----------------------------------    
-                self.ui.button('Login', on_click=login_dialog.open,
-                ).tailwind('flex-none','w-100', 'bg-green','bg-gray-600','text-grey-800','capitalize', 'm-2')
+                # Tabs ----------------------------------
+                with ui.tabs().classes('flex justify-between w-100 text-slate-600 ') as tabs:
+                    h1 = ui.tab('Home')
+                    t1 = ui.tab('Industry')
+                    t2 = ui.tab('Projects')
+                    t3 = ui.tab('About')
+                    t4 = ui.tab('Contact Us')
 
-                # Sign up button ----------------------------------    
-                self.ui.button('Sign up', on_click=signup_dialog.open,
-                ).tailwind('flex-none','w-100', 'bg-gray-600','text-grey-800','capitalize', 'm-2')
+                # Auth ----------------------------------
+                with self.ui.element():
+                    # Login button ----------------------------------    
+                    self.ui.button('Login', on_click=login_dialog.open,
+                    ).tailwind('flex-none','w-100', 'bg-green','bg-gray-600','text-grey-800','capitalize', 'm-2')
+
+                    # Sign up button ----------------------------------    
+                    self.ui.button('Sign up', on_click=signup_dialog.open,
+                    ).tailwind('flex-none','w-100', 'bg-gray-600','text-grey-800','capitalize', 'm-2')
 
         # Body ----------------------------------
-        self.ui.markdown('# Welcome to Vektir Labs').classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+        with self.ui.tab_panels(tabs, value=h1).classes('w-full capitalize'):
+            with self.ui.tab_panel(h1):
+                self.ui.markdown('# Welcome to Vektir Labs'
+                    ).classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+
+            with self.ui.tab_panel(t1):
+                self.ui.markdown('# Vektir Labs - Industries'
+                    ).classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+
+            with self.ui.tab_panel(t2):
+                self.ui.markdown('# Vektir Labs - Projects'
+                    ).classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+
+            with self.ui.tab_panel(t3):
+                self.ui.markdown('# Vektir Labs - About'
+                    ).classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+
+            with self.ui.tab_panel(t4):
+                self.ui.markdown('# Vektir Labs - Contact Us'
+                    ).classes('flex justify-center w-full p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
+
+        
