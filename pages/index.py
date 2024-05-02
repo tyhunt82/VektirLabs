@@ -5,8 +5,7 @@ class index_page:
         self.ui = ui
         self.ui.page_title('Vektir Labs')
         self.isAuthd = False
-        username = 'Guest' # This will be replaced with the actual username and annonimous user
-        
+
         # Dialogs ----------------------------------
         # Login form -------------------------------
         with self.ui.dialog() as login_dialog:
@@ -39,7 +38,7 @@ class index_page:
                         self.ui.label('Vektir Labs').classes('flex p-2 pl-4 font-mono text-slate-600 text-lg font-bold')
 
                 # Tabs ----------------------------------
-                with ui.tabs().classes('flex justify-between w-100 text-slate-600 ') as tabs:
+                with ui.tabs().classes('flex justify-between blue w-100 text-slate-600 ') as tabs:
                     h1 = ui.tab('Home')
                     t1 = ui.tab('Industry')
                     t2 = ui.tab('Projects')

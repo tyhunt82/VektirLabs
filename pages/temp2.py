@@ -1,6 +1,6 @@
 from nicegui import Tailwind, ui 
 
-class temp1_page:
+class temp2_page:
     def __init__(self):
         self.ui = ui
         username = 'Guest' # This will be replaced with the actual username and annonimous user

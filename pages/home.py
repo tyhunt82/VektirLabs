@@ -27,14 +27,6 @@ class home_page:
                 self.ui.switch('Add Attachments').props('enabled=True')
                 self.ui.switch('Add Tags')
 
-                # self.ui.separator().tailwind('w-96',)
-                # self.ui.label('Plus integration features').tailwind('text-lg','w-96',)
-                # self.ui.switch('Enable Wellview')
-                # self.ui.switch('Enable Open Wells')
-                # self.ui.switch('Enable Corva')
-                # self.ui.switch('Enable MD/Totco')
-                # self.ui.switch('Enable Pason')
-
                 self.ui.button('Create', icon='add', on_click=lambda: '',).classes('w-full capitalize bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded')
 
         # Header ----------------------------------
@@ -67,11 +59,6 @@ class home_page:
 
         # Body ----------------------------------
         with self.ui.row().classes('flex w-full bordered'):
-            # with self.ui.column().classes('flex flex-col w-full bg-white h-screen items-center py-2'):
-            #     self.ui.link('landing Page', '/')
-            #     self.ui.link('Home', '/home')
-            #     self.ui.link('Login', '/login')
-            #     self.ui.link('Temp', '/temp')
            with ui.tab_panels(tabs, value=app1).classes('w-full capitalize'):
                 with ui.tab_panel(app1):
                     ui.label('First tab')
@@ -86,24 +73,12 @@ class home_page:
                 with ui.tab_panel(app6):
                     ui.label('Second tab')
 
-
-
         # Left Sidebar ----------------------------------
         with self.ui.left_drawer().classes('bg-gray-100 font-mono shadow-md') as left_drawer:
             self.ui.label(f'Welcome, {self.un}!').tailwind('w-full', 'text-lg', 'blue-500', 'text-center')
             ui.separator()
+            
+            self.ui.space()
 
             self.ui.button('Create',icon='add', on_click=lambda: create_new_dialog.open()
                 ).tailwind('flex', 'flex-col','block','capitalize','rounded-full', 'text-center','w-full', 'bg-blue-500', 'text-white', 'font-bold',)
-
-            with self.ui.expansion('Projects').classes('w-full'):
-                self.ui.label('Well 1').tailwind.text_color('bg-blue-500')
-                self.ui.label('Well 2')
-                self.ui.label('Well 3')
-                self.ui.label('Well 4')
-                self.ui.label('Well 5')
-
-            # self.ui.space()
-            # with ui.element('q-fab').props('icon=navigation color=blue-5'):
-            #     self.ui.element('q-fab-action').props('icon=train color=blue-5') 
-               

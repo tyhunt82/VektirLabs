@@ -4,7 +4,8 @@ from nicegui import APIRouter, ui
 from pages.index import index_page
 from pages.home import home_page 
 from pages.forgot import forgot_page 
-from pages.template import template_page
+from pages.temp1 import temp1_page
+from pages.temp2 import temp2_page
 
 # Set up NiceGUI router ----------------------------------------------
 router = APIRouter()
@@ -17,11 +18,16 @@ def get_index_view():
 @ui.page('/home')
 def get_home_view():
     home_page()
-  
-@ui.page('/temp')
-def get_temp_view():
-    template_page()
 
 @ui.page('/forgot')
-def get_temp_view():
+def get_forgotpw_view():
     forgot_page()
+
+# Testing and Temp pages ------------------------------------------------
+@ui.page('/temp1')
+def get_temp1_view():
+    temp1_page()
+
+@ui.page('/temp2')
+def get_temp2_view():
+    temp2_page()
