@@ -5,6 +5,32 @@ class home_page:
         self.ui = ui
         self.un = 'Guest'
         self.ui.page_title('Home')
+        self.isAuthd = False
+
+        def get_started_handler(selected):
+            if selected == 'login':
+                get_started_dialog.close()
+                # with self.ui.dialog() as login_dialog:
+                #     # Login process ----
+                #     with self.ui.card():
+                #         self.ui.label('Login').tailwind('text-xl','w-48', 'p-4', 'font-bold',)
+                #         email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
+                #         password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
+                #         submit = self.ui.button('Login').classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: login process
+                # self.ui.button('Open a dialog', on_click=login_dialog.open)
+
+            elif selected == 'signup':
+                # Sign up process ----
+                # with self.ui.card():
+                #     self.ui.label('Login').tailwind('text-xl','w-48', 'p-4', 'font-bold',)
+                #     email = self.ui.input(label='Email', placeholder='Your email').classes('w-48 p-2')
+                #     password = self.ui.input(label='Password', placeholder='Your password', password=True, ).classes('w-48 p-2')
+                #     submit = self.ui.button('Login').classes('w-48 bg-blue-500 text-white font-bold py-2 px-4 p-2 rounded') #TODO: login process
+                pass             
+            elif selected == 'anonymous':
+                pass
+            elif selected == 'forgotpassword':
+                pass
 
         # Header ----------------------------------
         with self.ui.header().classes(replace='font-mono shadow-md bg-white text-md min-h-12') as header:
@@ -16,10 +42,15 @@ class home_page:
 
                 self.ui.label('Vektir Labs').classes('flex-1 font-mono m-2 text-slate-600 text-lg font-bold')
 
-                self.ui.button('Get Started',
+                self.ui.button('Login',
+                    on_click=lambda: right_drawer.toggle(),
+                ).tailwind('flex-none','w-100', 'bg-green','bg-gray-600','text-grey-800','capitalize', 'm-2')
+
+                self.ui.button('Sign up',
                     on_click=lambda: right_drawer.toggle(),
                 ).tailwind('flex-none','w-100', 'bg-gray-600','text-grey-800','capitalize', 'm-2')
 
+        
         # Body ----------------------------------
         with self.ui.row().classes('flex w-full bordered'):
             with self.ui.column().classes('flex flex-col w-full bg-white h-screen items-center py-2'):
@@ -28,7 +59,6 @@ class home_page:
                 self.ui.link('Login', '/login')
                 self.ui.link('Temp', '/temp')
            
-
         # Left Sidebar ----------------------------------
         with self.ui.left_drawer().classes('bg-gray-100') as left_drawer:
             self.ui.label(f'Welcome, {self.un}!').tailwind('block', 'w-full', 'text-lg', 'blue-500', 'm-2', 'text-center')
@@ -53,5 +83,5 @@ class home_page:
             with self.ui.expansion('Get Started', icon='lock').classes('w-full'):
                 self.ui.label('Login').props('borderless')
                 self.ui.label('Sign up')
+                self.ui.label('Anonymous')
                 self.ui.label('Forgot Passwrord')
-                self.ui.label('Go Anonymous')
