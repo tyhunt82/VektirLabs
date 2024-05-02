@@ -8,6 +8,7 @@ app.add_static_files('/static', 'static')
         # State management
         # Check user auth
         # Set up firebase
+        # Add company log in feature
 
 # NOTE: On Windows reload must be disabled to make asyncio.create_subprocess_exec 
 # work (see https://github.com/zauberzeug/nicegui/issues/486)
